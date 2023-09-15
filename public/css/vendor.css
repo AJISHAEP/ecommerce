@@ -1,0 +1,152 @@
+.icon-hover:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+  }
+
+  .icon-hover:hover i {
+    color:#3762a7 !important;
+  }
+
+  .bak{
+    background-image: url("https://thumbs.dreamstime.com/b/e-commerce-online-shopping-digital-marketing-sales-business-technology-concept-137074336.jpg?w=992");
+    background-size: cover;
+
+  }
+
+  .text{
+    font-size: 12px;
+  }
+  /* CSS for the required field indicator */
+.required {
+    color: red; /* Change the color to your desired color */
+    margin-left: 5px; /* Add some spacing between the label and the asterisk */
+}
+ /* Basic styles for the dropdown */
+ .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the dropdown button */
+.dropdown-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Style for the dropdown items */
+.dropdown-content li {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black; /* Set the font color to black */
+    font-size: 14px;
+}
+/* Set the font color to black with !important */
+.dropdown-content li a {
+ color: black !important;
+ text-decoration: none; /* Remove underline */
+}
+
+
+/* Change color of dropdown items on hover */
+.dropdown-content li:hover {
+    background-color: #ddd;
+}
+
+/* Increase space between "Profile" and "Logout" */
+.dropdown-content li.profile {
+    margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Show the dropdown content when hovering over the dropdown button */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Add this CSS to remove bullet points from dropdown menu */
+.dropdown-content ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+/* Remove underline from links inside the dropdown */
+.dropdown-content ul li a {
+text-decoration: none;
+}
+body{margin-top:20px;
+    background-color:#e6e8e9;
+    color:black;
+    }
+    .img-account-profile {
+        height: 10rem;
+    }
+    .rounded-circle {
+        border-radius: 75% !important;
+    }
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+    .card .card-header {
+        font-weight: 500;
+    }
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(74, 108, 155, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+    .form-control, .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #6c6f72;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .mb-4 {
+        margin-bottom: 0.5rem!important;
+    }
+    .mt-4 {
+        margin-top: 7.5rem!important;
+    }
