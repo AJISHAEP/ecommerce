@@ -208,7 +208,7 @@
                                 </div>
                                 <!-- Save changes button for address details -->
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <button class="btn btn-primary" type="submit">Update Address</button>
+                                    <button class="btn btn-primary" type="submit">Add </button>
 
                                     <a href="{{ route('add') }}" class="btn btn-primary">Address List</a>
                                 </div>

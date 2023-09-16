@@ -224,4 +224,23 @@ class AuthManager extends Controller
 
     return redirect(route('add'))->with("message", "Profile updated successfully");
 }
+
+//      return view('cart');
+//      $product=product::findOrFail($id);
+//     $cart=session()->get('cart',[]
+// );
+//     if(isset($cart[$id])){
+//         $cart[$id]['quantity']++;
+//     }else{
+//         $cart[$id]=[
+//             'name'=>$product->name,
+//             'quantity'=>1,
+//             'price'=>$product->price,
+//             'image'=>$product->image
+//         ];
+//     }
+//     session()-> put('cart',$cart);
+
+//     return redirect()->with('message','Product added to cart');
+// // }
 }

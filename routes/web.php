@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,7 @@ Route::get('add', [AuthManager::class, 'add'])->name('add');
 Route::get('address', [AuthManager::class, 'address'])->name('address');
 Route::get('edits/{id}', [AuthManager::class, 'edits'])->name('edits');
 Route::post('address/edits', [AuthManager::class, 'addressedits'])->name('address.edits');
+Route::get('cart/{id}', [CartController::class, 'cart'])->name('cart');
 
 // Route::post('/account', [AuthManager::class, 'accountPost'])->name('account.post');
 // Route::get('/addaddress', [AuthManager::class, 'addaddress'])->name('addaddress');

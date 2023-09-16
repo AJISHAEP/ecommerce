@@ -42,13 +42,18 @@
                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                     <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                    <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                    <li class="icon">
+    <a href="{{ route('cart') }}">
+        <span class="fas fa-shopping-bag"></span>
+    </a>
+   
                 </ul>
             </div>
             <div class="tag bg-red">sale</div>
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
             <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
             <div class="price">${{ $product->price }}</div>
+            <p class="btn-holder"><a href="{{ route('cart') }}" class="btn btn-outline-danger">Add to Cart</a></p>
         </div>
 
             @endforeach
