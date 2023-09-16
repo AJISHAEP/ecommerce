@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +16,7 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-
-});
+Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
 // ->name('dash');
 Route::get('/new/{id}', [AuthManager::class, 'new'])->name('new');
 Route::get('/signin', [AuthManager::class, 'signin'])->name('signin');
