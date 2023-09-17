@@ -22,7 +22,7 @@
           <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNFNDMElrZ3mCX7JtiB7yRiwGKZsH85rvcw&usqp=CAU" height="35" />
           </a>
-          
+
         </div>
         <!-- Left elements -->
 
@@ -184,10 +184,10 @@
                         </div>
                 </div>
             </div>
-            
+
         </nav>
     <div class="row">
-        @foreach ($data as $product)
+        @foreach ($products as $product)
         @if ($loop->iteration <= 12)
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product"> <img src="{{ asset("storage/images/".$product->image) }}" alt="">
@@ -195,10 +195,10 @@
                     <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
                     <li class="icon">
-    <a href="{{ route('cart') }}">
+    <a href="{{ route('cart',encrypt($product->id)) }}">
         <span class="fas fa-shopping-bag"></span>
     </a>
-   
+
 </li>
 
                 </ul>
@@ -206,7 +206,7 @@
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
             <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
             <div class="price">${{ $product->price }}</div>
-            <p class="btn-holder"><a href="{{ route('cart',$product->id) }}" class="btn btn-outline-danger">Add to Cart</a></p>
+            <p class="btn-holder"><a href="{{ route('cart',encrypt($product->id)) }}" class="btn btn-outline-danger">Add to Cart</a></p>
         </div>
 {{--
             <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
