@@ -19,7 +19,7 @@
       <div class="row gy-3">
         <!-- Left elements -->
         <div class="col-lg-2 col-sm-4 col-4">
-          <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
+          <a href="#" target="_blank" class="float-start">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNFNDMElrZ3mCX7JtiB7yRiwGKZsH85rvcw&usqp=CAU" height="35" />
           </a>
 
@@ -37,9 +37,17 @@
 
 
 @auth
+<style>
+    .fas.fa-user {
+        border: none; /* Remove the border */
+        outline: none; /* Remove the outline */
+    }
+</style>
                 <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+                
 
 @endauth
+
 
                 <div class="dropdown-content">
                     <ul>
@@ -56,6 +64,18 @@
                 </ul>
                 </div>
             </div>
+            @auth
+            <style>
+    .fas.fa-shopping-cart {
+        border: none; /* Remove the border */
+        outline: none; /* Remove the outline */
+    }
+</style>
+<a href="{{ route('cartlist') }}">
+    <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+</a>
+
+@endauth
 
 <!-- ... -->
 
@@ -180,24 +200,40 @@
                         {{-- <a class="nav-link active" aria-current="page" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">Mobile</a>
                         <a class="nav-link" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">fashion</a> --}}
                         <a class="nav-link" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">{{$catagory->name}}</a>
+                        
                         @endforeach
                         </div>
                 </div>
             </div>
 
         </nav>
+        @if (session('message'))
+   <div class="alert alert-success" id="session-message">
+       {{ session('message') }}
+   </div>
+   <script>
+       // Set a timeout to hide the message after 3 seconds (3000 milliseconds)
+       setTimeout(function() {
+           var sessionMessage = document.getElementById('session-message');
+           if (sessionMessage) {
+               sessionMessage.style.display = 'none';
+           }
+       }, 3000); // 3000 milliseconds = 3 seconds
+   </script>
+@endif
+
     <div class="row">
         @foreach ($products as $product)
         @if ($loop->iteration <= 12)
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product"> <img src="{{ asset("storage/images/".$product->image) }}" alt="">
                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                    <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
+                    <!-- <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
                     <li class="icon">
     <a href="{{ route('cart',encrypt($product->id)) }}">
         <span class="fas fa-shopping-bag"></span>
-    </a>
+    </a> -->
 
 </li>
 
@@ -206,7 +242,16 @@
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
             <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
             <div class="price">${{ $product->price }}</div>
-            <p class="btn-holder"><a href="{{ route('cart',encrypt($product->id)) }}" class="btn btn-outline-danger">Add to Cart</a></p>
+          
+            <form action="{{ url('cart') }}" method="POST">
+    @csrf
+    <input type="hidden" name="id" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="quantity">
+    <br>
+    <button class="btn btn-outline-danger" type="submit">Add to Cart</button>
+</form>
+        
+               <!-- <p class="btn-holder"><a href="{{ route('cart',encrypt($product->id)) }}" class="btn btn-outline-danger">Add to Cart</a></p> -->
         </div>
 {{--
             <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
@@ -463,6 +508,9 @@
 <!-- Footer -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-nw8vIQov5g/+0/4D3Bq5BvG3PpMv4lElhftSs5Bq5zK4NwkWkPcHmcsf5OtF5m5Vf6" crossorigin="anonymous"></script>
+<!-- <div class="container mt-4">
+    <h2 class="mb-3">Shopping cart</h2> -->
+   
 
 </body>
 

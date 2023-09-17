@@ -53,10 +53,16 @@
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
             <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
             <div class="price">${{ $product->price }}</div>
-            <p class="btn-holder"><a href="{{ route('cart') }}" class="btn btn-outline-danger">Add to Cart</a></p>
+            <form action="{{ url('cart') }}" method="POST">
+    @csrf
+    <input type="hidden" name="id" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="quantity">
+    <br>
+    <button class="btn btn-outline-danger" type="submit">Add to Cart</button>
+</form>
         </div>
 
-            @endforeach
+        @endforeach
     </div>
         {{-- </div>
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">

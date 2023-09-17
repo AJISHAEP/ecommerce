@@ -73,14 +73,13 @@ class AuthManager extends Controller
         Auth::logout();
         return redirect(route('signin'));
     }
-    public function welcome()
-    {
-        // $user = Auth::user();
-        // return view('welcome', compact('user'));
-        $data=product::all();
-        $catagories=catagory::all();
-        return view('welcome', compact('data','catagories'));
-    }
+    // public function welcome()
+    // {
+       
+    //     $data=product::all();
+    //     $catagories=catagory::all();
+    //     return view('welcome', compact('data','catagories'));
+    // }
 
 
     public function profile()
