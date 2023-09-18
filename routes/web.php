@@ -34,6 +34,9 @@ Route::get('edits/{id}', [AuthManager::class, 'edits'])->name('edits');
 Route::post('address/edits', [AuthManager::class, 'addressedits'])->name('address.edits');
 Route::post('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('cartlist', [CartController::class, 'cartlist'])->name('cartlist');
+Route::get('showaddresses', [CartController::class, 'showaddresses'])->name('showaddresses');
+Route::post('place-order', [CartController::class, 'placeorder'])->name('place.order');
+
 
 // Route::post('/account', [AuthManager::class, 'accountPost'])->name('account.post');
 // Route::get('/addaddress', [AuthManager::class, 'addaddress'])->name('addaddress');

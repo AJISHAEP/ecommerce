@@ -10,6 +10,11 @@ class product extends Model
      use HasFactory;
      protected $guarded=[];
      protected $table = 'product';
+     protected $fillable=[
+        'name',
+        'price',
+        'image',
+     ];
     // protected function status():Attribute{
     //     return Attribute::make(
     //         get:fn(string $value)=>($value==1)?"Active" : "Inactive",

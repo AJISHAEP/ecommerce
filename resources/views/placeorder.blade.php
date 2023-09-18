@@ -158,7 +158,7 @@
  <div class="d-flex justify-content-between align-items-center flex ">
     {{-- <button class="btn btn-danger btnn" type="submit">Place Order </button> --}}
 
-    <a href="{{ route('showaddresses') }}" class="btn btn-danger btnn">Place Order</a>
+    <a href="{{ route('showaddresses') }}" class="btn btn-danger btnn">Confirm Order</a>
 
 </div>
 </body>

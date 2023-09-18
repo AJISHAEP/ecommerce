@@ -2,71 +2,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\product; // Ensure that the model name is capitalized correctly
+use App\Models\product;
 use App\Models\Cart;
+use App\Models\Account;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function cart(Request $request)
-    {
-       
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $productId = $request->input('id');
+        $quantity = $request->input('quantity');
 
-        if (Auth::check()) { // Check if the user is authenticated
-            $user = Auth::user(); // Retrieve the authenticated user
 
-            // $product = product::find($id);
+        $existingCartItem = Cart::where('userId', $user->id)
+                                ->where('productId', $productId)
+                                ->first();
 
-            // if (!$product) {
-            //     // Product not found, handle the error (e.g., return a response or show an error message)
-            //     return redirect()->back()->with('error', 'Product not found.');
-            // }
-            
-            // Now you can safely access $product->name and other properties
+        if ($existingCartItem) {
 
+            $existingCartItem->quantity = $quantity;
+            $existingCartItem->save();
+        } else {
 
             $cart = new Cart();
-
             $cart->userId = $user->id;
-
-            
-            $cart->productId = $request->input('id');
-          
-
-             $cart->quantity = $request->input('quantity');
+            $cart->productId = $productId;
+            $cart->quantity = $quantity;
             $cart->save();
-            return redirect(route('welcome'))->with('message','product added to cart successfully');
-        } else {
-            return redirect('signin');
-            
         }
-    }
-    public function cartlist(){
-        $cartItems=Cart::where('id',Auth::user()->id)->get();
-        // $cartItems=DB::table('product')
-        // ->join('carts','carts.productId','product.id')
-        // ->select('product.name','product.price','product.image','carts.*')
-        // ->where('carts.userId',session()->get('id'))
-        // ->get();
-         return view('cartlist',compact('cartItems'));
+
+        return redirect(route('welcome'))->with('message', 'Product added to cart successfully');
+    } else {
+        return redirect('signin');
     }
 }
 
-//             $product=product::findOrFail($id);
-//             $cart=session()->get('cart',[]);
-//     if(isset($cart[$id])){
-//         $cart[$id]['quantity']++;
-//     }else{
-//         $cart[$id]=[
-//             'name'=>$product->name,
-//             'quantity'=>1,
-//             'price'=>$product->price,
-//             'image'=>$product->image
-//         ];
-//     }
-//     session()-> put('cart',$cart);
+    public function cartlist()
+{
+    $cartItems = Cart::where('userId', Auth::user()->id)->with('products')->get();
+    return view('cartlist', compact('cartItems'));
+}
 
-//     return redirect()->with('message','Product added to cart');
-// }
-           
+public function showAddresses()
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        $addresses = $user->addresses;
+
+        return view('showaddresses', compact('addresses'));
+    } else {
+
+        return redirect('signin');
+    }
+}
+public function placeorder(){
+    $cartItems = Cart::where('userId', Auth::user()->id)->with('products')->get();
+    return view('placeorder', compact('cartItems'));
+}
+public function order(){
+}
+
+

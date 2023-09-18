@@ -58,7 +58,7 @@ class User extends Authenticatable
 // User.php (User model)
 public function addresses()
 {
-    return $this->hasMany(Address::class);
+    return $this->hasMany(Account::class);
 }
 
 
