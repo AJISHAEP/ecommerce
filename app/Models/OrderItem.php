@@ -15,4 +15,5 @@ class OrderItem extends Model
         'prod_id',
         'price',
         'qlty',
+     ];
 }

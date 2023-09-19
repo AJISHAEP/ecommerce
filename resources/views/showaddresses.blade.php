@@ -79,6 +79,7 @@
 
         <form method="POST" action="{{ route('place.order') }}">
             @csrf
+            
             @foreach ($addresses as $account)
             <div class="address-list address-listt">
                 <div class="address-item">

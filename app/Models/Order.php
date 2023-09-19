@@ -11,9 +11,16 @@ class Order extends Model
     protected $guarded=[];
      protected $table = 'orders';
      protected $fillable=[
+        'user_id',
+        'total_price',
+        'fname',
+        'lname',
+        'phone',
+        'email',
         'address1',
         'address2',
         'state',
         'city',
         'pin',
+     ];
 }
