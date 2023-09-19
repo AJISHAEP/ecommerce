@@ -44,7 +44,7 @@
     }
 </style>
                 <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
-                
+
 
 @endauth
 
@@ -200,7 +200,7 @@
                         {{-- <a class="nav-link active" aria-current="page" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">Mobile</a>
                         <a class="nav-link" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">fashion</a> --}}
                         <a class="nav-link" href="{{ route('new',['id' => encrypt($catagory->id)]) }}">{{$catagory->name}}</a>
-                        
+
                         @endforeach
                         </div>
                 </div>
@@ -242,7 +242,7 @@
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
             <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
             <div class="price">${{ $product->price }}</div>
-          
+
             <form action="{{ url('cart') }}" method="POST">
     @csrf
     <input type="hidden" name="id" value="{{ $product->id }}">
@@ -250,7 +250,7 @@
     <br>
     <button class="btn btn-outline-danger" type="submit">Add to Cart</button>
 </form>
-        
+
                <!-- <p class="btn-holder"><a href="{{ route('cart',encrypt($product->id)) }}" class="btn btn-outline-danger">Add to Cart</a></p> -->
         </div>
 {{--
@@ -439,12 +439,12 @@
           <!-- Links -->
           <h6 class="text-uppercase text-dark fw-bold mb-2">Newsletter</h6>
           <p class="text-muted">Stay in touch with latest updates about our products and offers</p>
-          <div class="input-group mb-3">
+          {{-- <div class="input-group mb-3">
             <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
             <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
               Join
             </button>
-          </div>
+          </div> --}}
         </div>
         <!-- Grid column -->
       </div>
@@ -466,7 +466,7 @@
         <!--- payment --->
 
         <!--- language selector --->
-        <div class="dropdown dropup">
+        {{-- <div class="dropdown dropup">
           <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
 
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
@@ -499,7 +499,7 @@
               <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
             </li>
           </ul>
-        </div>
+        </div> --}}
         <!--- language selector --->
       </div>
     </div>
@@ -510,7 +510,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-nw8vIQov5g/+0/4D3Bq5BvG3PpMv4lElhftSs5Bq5zK4NwkWkPcHmcsf5OtF5m5Vf6" crossorigin="anonymous"></script>
 <!-- <div class="container mt-4">
     <h2 class="mb-3">Shopping cart</h2> -->
-   
+
 
 </body>
 

@@ -123,6 +123,11 @@
                                          <div class="cart_item_text">${{ $cartItem->products['price'] }}</div>
 
                                  </div>
+                                 <div class="cart_item_action cart_info_col">
+                                    <div class="cart_item_title">Action</div>
+                                    <div class="btn btn-danger btnnn">Delete</div>
+                                </div>
+                                    {{-- <i class="fas fa-trash fa-animate-shake" style="color: white; padding-right: 8px;"></i>  </a> --}}
                              </li>
                          </ul>
                      </div>

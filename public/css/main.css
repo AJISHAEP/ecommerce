@@ -330,10 +330,14 @@ text-decoration: none;
     /* justify-content: space-between; */
      gap: 20px;
     flex-direction: column-reverse;
-}  
+}
 .btnn {
     margin: 20px 0px 0px 800px;
 
     --bs-btn-padding-x: 6.75rem;
     --bs-btn-padding-y: 0.375rem;
+}
+.bodyy
+{
+    background: #e8e8e8;
 }

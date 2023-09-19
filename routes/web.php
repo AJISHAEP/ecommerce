@@ -36,6 +36,7 @@ Route::post('cart', [CartController::class, 'cart'])->name('cart');
 Route::get('cartlist', [CartController::class, 'cartlist'])->name('cartlist');
 Route::get('showaddresses', [CartController::class, 'showaddresses'])->name('showaddresses');
 Route::post('place-order', [CartController::class, 'placeorder'])->name('place.order');
+// Route::post('confirm-order', [CartController::class, 'confirmorder'])->name('confirm.order');
 
 
 // Route::post('/account', [AuthManager::class, 'accountPost'])->name('account.post');

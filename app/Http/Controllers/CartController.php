@@ -59,11 +59,13 @@ public function showAddresses()
         return redirect('signin');
     }
 }
-public function placeorder(){
-    $cartItems = Cart::where('userId', Auth::user()->id)->with('products')->get();
-    return view('placeorder', compact('cartItems'));
+// public function placeorder(){
+//     $cartItems = Cart::where('userId', Auth::user()->id)->with('products')->get();
+//     return view('placeorder', compact('cartItems'));
+// }
+public function placeorder($id){
+    $accounts = Account::find(decrypt($id));
+            return view('place-order',compact('accounts'));
 }
-public function order(){
 }
-
 
