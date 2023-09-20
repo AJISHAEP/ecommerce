@@ -51,8 +51,19 @@
                             <div class="dropdown">
 
 
+
+
                                 @auth
+                                    <style>
+                                        .fas.fa-user {
+                                            border: none;
+                                            /* Remove the border */
+                                            outline: none;
+                                            /* Remove the outline */
+                                        }
+                                    </style>
                                     <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+
 
                                 @endauth
 
@@ -65,14 +76,41 @@
                                         </li>
                                         <li>
                                             <a href={{ route('welcome') }}>
-                                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                                <i class="fas fa-user-circle me-2"></i> Home
                                             </a>
                                         </li>
-
+                                        <li>
+                                            <a href={{ route('orderlist') }}>
+                                                <i class="fas fa-user-circle me-2"></i> Order
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="fas fa-sign-out-alt"></i> Logout
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
+                            @auth
+                            <style>
+                                .fas.fa-shopping-cart {
+                                    border: none;
+                                    /* Remove the border */
+                                    outline: none;
+                                    /* Remove the outline */
+                                }
+                            </style>
+                            <a href="{{ route('cartlist') }}">
+                                <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+                            </a>
 
+                        @endauth
                             <!-- ... -->
 
 
@@ -118,6 +156,7 @@
                         }, 3000); // 3000 milliseconds = 3 seconds
                     </script>
                     @endif
+
                     <div class="card-body">
                         <form action="{{ route('place.order') }}" method="POST">
                             @csrf
@@ -127,14 +166,14 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form7Example1">First name</label>
-                                        <input type="text" id="form7Example1" name="fname"class="form-control" value="{{Auth::user()->fname}}" />
+                                        <input type="text" id="fname" name="fname"class="form-control" value="{{Auth::user()->fname}}" required/>
 
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form7Example2">Last name</label>
-                                        <input type="text" id="form7Example2" name="lname"class="form-control"value="{{Auth::user()->lname}}" />
+                                        <input type="text" id="lname" name="lname"class="form-control"value="{{Auth::user()->lname}}"required />
 
                                     </div>
                                 </div>
@@ -145,7 +184,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form7Example3">House Name</label>
-                                        <input type="text" id="form7Example3" name="address1"class="form-control"value="{{Auth::user()->address1}}" />
+                                        <input type="text" id="address1" name="address1"class="form-control"value="{{$address->address1}}"required />
                                     </div>
                                 </div>
 
@@ -153,36 +192,36 @@
                                 <div class="col">
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form7Example4">Street</label>
-                                        <input type="text" id="form7Example4" name="address2" class="form-control"value="{{Auth::user()->address2}}" />
+                                        <input type="text" id="address2" name="address2" class="form-control"value="{{$address->address2}}"required />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form7Example6">City</label>
-                                <input type="text" id="form7Example6" name="city" class="form-control" value="{{Auth::user()->city}}"/>
+                                <input type="text" id="city" name="city" class="form-control" value="{{$address->city}}" required/>
 
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form7Example6">state</label>
-                                <input type="text" id="form7Example6" name="state" class="form-control" value="{{Auth::user()->state}}"/>
+                                <input type="text" id="state" name="state" class="form-control" value="{{$address->state}}"required/>
 
                             </div>
 
                             <!-- Number input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form7Example6">Phone</label>
-                                <input type="number" id="form7Example6" name="phone" class="form-control"value="{{Auth::user()->phone}}" />
+                                <input type="number" id="phone" name="phone" class="form-control"value="{{Auth::user()->phone}}" required/>
 
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form7Example6">Pin</label>
-                                <input type="number" id="form7Example6" name="pin" class="form-control" value="{{Auth::user()->pin}}"/>
+                                <input type="number" id="pin" name="pin" class="form-control" value="{{$address->pin}}"required/>
 
                             </div>
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form7Example5">Email</label>
-                                <input type="email" id="form7Example5" name="email" class="form-control"value="{{Auth::user()->email}}" />
+                                <input type="email" id="email" name="email" class="form-control"value="{{Auth::user()->email}}" required/>
 
                             </div>
 
@@ -202,7 +241,7 @@
                                 </label>
                                      </div> --}}
 
-                            <button type="submit" class="btn btn-primary float-end">
+                            <button type="submit" class="btn btn-danger float-end">
                                 Confirm Order
                             </button>
                         </form>
@@ -220,13 +259,25 @@
                         <h5 class="mb-0">Order Details</h5>
                         <br>
 
-                        <table class="table">
-                            <tbody>
-                                <th>Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
 
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $total = 0;
+                                @endphp
                                 @foreach ($cartItems as $cartItem)
+                                    @php
+                                    // Calculate the subtotal for the current item
+                                    $subtotal = $cartItem->products['price'] * $cartItem->quantity;
+                                    $total += $subtotal; // Add subtotal to the total
+                                    @endphp
                                     <tr>
                                         <td>{{ $cartItem->products['name'] }}</td>
                                         <td>{{ $cartItem->quantity }}</td>
@@ -235,14 +286,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <h6>Total Price: ${{ number_format($total) }}</h6>
 
-                    </div>
                 </div>
             </div>
 
         </div>
+        {{-- <h6>Total Price: ${{ number_format($total) }}</h6> --}}
         {{-- <div class="card-footer">
-                             <h6>Total Price: ${{ number_format($total) }}</h6> --}}
+                             <h6>Total Price: ${{ number_format($total) }}</h6>
         <!-- ... your cart items ... -->
 
 

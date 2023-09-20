@@ -57,9 +57,22 @@
                             <i class="fas fa-user-circle me-2"></i> Profile
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href={{ route('welcome') }}>
                             <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li> --}}
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    <li>
+                        <a href="{{ route('welcome') }}">
+                            <i class="fas fa-user-circle me-2"></i> Home
                         </a>
                     </li>
                 </ul>
@@ -86,6 +99,7 @@
         <!-- Center elements -->
 
         <!-- Right elements -->
+
         <div class="col-lg-5 col-md-12 col-12">
           <div class="input-group float-center">
             <div class="form-outline">
@@ -100,21 +114,21 @@
       </div>
     </div>
   </div>
-  <section class="h-100 h-custom" style="background-color: #eee;">
+  <section class="h-100 h-custom" style="background-color: #e8e8e8;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-8 col-xl-6">
-          <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+          <div class="card border-top border-bottom border-3" style="border-color: #e8e8e8 !important;">
             <div class="card-body p-5">
 
-              <p class="lead fw-bold mb-5" style="color: #f37a27;">Purchase Reciept</p>
+              <h2 style="color: #dc3545;text-align: center;">Thank you for purchasing with us!</h2>
 
-              <div class="row">
+              {{-- <div class="row">
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Date</p>
                   <p>10 April 2021</p>
-                </div>
-                <div class="col mb-3">
+                </div> --}}
+                {{-- <div class="col mb-3">
                   <p class="small text-muted mb-1">Order No.</p>
                   <p>012j1gvs356c</p>
                 </div>
@@ -143,7 +157,7 @@
                 <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
                   <p class="lead fw-bold mb-0" style="color: #f37a27;">£262.99</p>
                 </div>
-              </div>
+              </div> --}}
 
               {{-- <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
 
@@ -177,7 +191,46 @@
 
               <p class="mt-4 pt-2 mb-0">Want any help? <a href="#!" style="color: #f37a27;">Please contact
                   us</a></p> --}}
+                  <div class="col-md-4 mb-6"style="flex: 0 0 auto; width: 102.333333%";>
+                    <div class="card mb-4 cardd">
+                        <div class="card-header py-6">
+                            <h5 class="mb-0">Order Details</h5>
+                            <br>
 
+                            <table class="table  table-striped">
+                                <tbody>
+                                    <th>Tracking No</th>
+                                    <th>Total Price</th>
+                                    {{-- <th>Name</th> --}}
+                                    {{-- @php
+                                    $total = 0;
+                                @endphp --}}
+                            @foreach ($orders as $item)
+                                {{-- @php
+                                    // Calculate the subtotal for the current item
+                                    $subtotal = $cartItem->products['price'] * $cartItem->quantity;
+                                    $total += $subtotal; // Add subtotal to the total
+                                @endphp --}}
+                                    {{-- @foreach ($cartItems as $cartItem) --}}
+                                        <tr>
+                                            <td>{{ $item->tracking_no }}</td>
+                                            <td>{{ $item->total_price }}</td>
+                                            {{-- <td>
+                                                <a href="" class="btn btn-danger">view</a>
+                                            </td> --}}
+                                        </tr>
+
+                                    @endforeach
+
+                                </tbody>
+
+                            </table>
+                            {{-- <h6>Total Price: ${{ number_format($total) }}</h6> --}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             </div>
           </div>
         </div>

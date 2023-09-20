@@ -42,8 +42,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    <li>
+                        <a href="{{ route('welcome') }}">
+                            <i class="fas fa-user-circle me-2"></i> Home
                         </a>
                     </li>
                 </ul>

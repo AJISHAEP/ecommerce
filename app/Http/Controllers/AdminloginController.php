@@ -12,7 +12,7 @@ class AdminloginController extends Controller
     public function doLogin(){
         $input=request()->only(['username','password']);
         if(auth()->guard('admins')->attempt($input,request('remember_me'))){
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.product.list');
         }
         else{
             return redirect()->route('admin.login')->with('message','Login Failed');

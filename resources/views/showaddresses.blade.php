@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
 
         <title>Home page</title>
@@ -33,22 +35,68 @@
             <a href="{{route('signup')}}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2 text"></i><p class="d-none d-md-block mb-0 text">Sign up</p> </a>
             <!-- ... -->
             <div class="dropdown">
-                <button class="fas fa-user m-1 me-md-2 text" style="font-size: 1.5rem;"></button>
+
+
+                @auth
+                    <style>
+                        .fas.fa-user {
+                            border: none;
+                            /* Remove the border */
+                            outline: none;
+                            /* Remove the outline */
+                        }
+                    </style>
+                    <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+
+
+                @endauth
+
+
                 <div class="dropdown-content">
                     <ul>
+                        <li>
+                            <a href={{ route('welcome') }}>
+                                <i class="fas fa-user-circle me-2"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href={{ route('profile') }}>
+                                <i class="fas fa-user-circle me-2"></i> Profile
+                            </a>
+                        </li>
+
                     <li>
-                        <a href="{{ route('profile') }}">
-                            <i class="fas fa-user-circle me-2"></i> Profile
+                        <a href={{ route('orderlist') }}>
+                            <i class="fas fa-user-circle me-2"></i> Order
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
-                </div>
             </div>
+        </div>
+        @auth
+            <style>
+                .fas.fa-shopping-cart {
+                    border: none;
+                    /* Remove the border */
+                    outline: none;
+                    /* Remove the outline */
+                }
+            </style>
+            <a href="{{ route('cartlist') }}">
+                <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+            </a>
+
+        @endauth
 
 <!-- ... -->
 
@@ -77,9 +125,9 @@
     <h3>Select An Address</h3>
 
 
-        <form method="POST" action="{{ route('place.order') }}">
-            @csrf
-            
+        {{-- <form method="POST" action="{{ route('place.order') }}">
+            @csrf --}}
+
             @foreach ($addresses as $account)
             <div class="address-list address-listt">
                 <div class="address-item">
@@ -94,14 +142,14 @@
 
                         {{-- <input type="radio" class="form-check-input" id="address{{ $account->id }}" name="selectedAddress" value="{{ $account->id }}"> --}}
 
-                        <button type="submit" class="btn btn-danger btnn">Deliver Here</button>
+                        <a href={{route('placeoorder',encrypt($account->id))}}  class="btn btn-danger btnn">Deliver Here</a>
                     </div>
                 </div>
             @endforeach
 
             <!-- Submit button to place the order -->
 
-        </form>
+        {{-- </form> --}}
     </div>
 </div>
 

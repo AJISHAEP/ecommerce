@@ -67,15 +67,15 @@ class AuthManager extends Controller
         return redirect(route('signin'))->with("success", "Sign up successful, please sign in.");
     }
 
-    public function signout()
-    {
-        Session::flush();
-        Auth::logout();
-        return redirect(route('signin'));
-    }
+    // public function signout()
+    // {
+    //     Session::flush();
+    //     Auth::logout();
+    //     return redirect(route('signin'));
+    // }
     // public function welcome()
     // {
-       
+
     //     $data=product::all();
     //     $catagories=catagory::all();
     //     return view('welcome', compact('data','catagories'));
@@ -85,7 +85,17 @@ class AuthManager extends Controller
     public function profile()
     {
         // $user = Auth::user();
-        return view('profile');
+        if (Auth::check()) {
+            $user = Auth::user();
+            $accounts = Account::where('user_id',Auth::user()->id)->get();
+            return view('profile',compact('accounts'));
+           
+
+        } else {
+
+            return redirect('signin');
+        }
+
     }
 
     public function new($id)
@@ -181,8 +191,17 @@ class AuthManager extends Controller
         public function add()
         {
             // return view('add');
-            $accounts = Account::where('user_id',Auth::user()->id)->get();
-            return view('add',compact('accounts'));
+            if (Auth::check()) {
+                $user = Auth::user();
+
+                $accounts = Account::where('user_id',Auth::user()->id)->get();
+                return view('add',compact('accounts'));
+
+            } else {
+
+                return redirect('signin');
+            }
+
         }
         public function address(){
             return view('address');
@@ -223,6 +242,14 @@ class AuthManager extends Controller
 
     return redirect(route('add'))->with("message", "Profile updated successfully");
 }
+
+public function logout()
+{
+    Session::flush();
+    Auth::logout();
+    return redirect(route('signin'));
+}
+
 
 //      return view('cart');
 //      $product=product::findOrFail($id);

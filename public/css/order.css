@@ -27,3 +27,6 @@
     .horizontal-timeline .items .items-list {
     padding-top: 15px;
     }
+    .p-5 {
+        padding: 5rem!important;
+    }

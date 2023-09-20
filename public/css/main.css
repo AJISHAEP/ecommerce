@@ -103,6 +103,7 @@ text-decoration: none;
 }
 .mt-4 {
     margin-top: 2.5rem!important;
+
 }
 .address-list {
         display: flex;
@@ -332,7 +333,7 @@ text-decoration: none;
     flex-direction: column-reverse;
 }
 .btnn {
-    margin: 20px 0px 0px 800px;
+    margin: 20px 0px 0px 900px;
 
     --bs-btn-padding-x: 6.75rem;
     --bs-btn-padding-y: 0.375rem;
@@ -341,3 +342,4 @@ text-decoration: none;
 {
     background: #e8e8e8;
 }
+

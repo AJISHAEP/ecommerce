@@ -41,14 +41,43 @@
                             <i class="fas fa-user-circle me-2"></i> Profile
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#">
                             <i class="fas fa-sign-out-alt me-2"></i> Logout
                         </a>
+                    </li> --}}
+                    <li>
+                        <a href={{ route('welcome') }}>
+                            <i class="fas fa-user-circle me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
-                </div>
             </div>
+        </div>
+        @auth
+            <style>
+                .fas.fa-shopping-cart {
+                    border: none;
+                    /* Remove the border */
+                    outline: none;
+                    /* Remove the outline */
+                }
+            </style>
+            <a href="{{ route('cartlist') }}">
+                <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+            </a>
+
+        @endauth
 
 <!-- ... -->
 

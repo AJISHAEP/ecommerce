@@ -46,8 +46,14 @@ class CartController extends Controller
 
     public function cartlist()
 {
+    if (Auth::check()) {
+        $user = Auth::user();
     $cartItems = Cart::where('userId', Auth::user()->id)->with('products')->get();
     return view('cartlist', compact('cartItems'));
+} else {
+
+    return redirect('signin');
+}
 }
 
 public function showAddresses()
@@ -62,76 +68,83 @@ public function showAddresses()
         return redirect('signin');
     }
 }
-public function placeoorder(){
+public function placeoorder($id){
 
 $cartItems=Cart::where('userId',Auth::id())->get();
-    return view('placeorder',compact('cartItems'));
-}
-public function placeorder(Request $request){
+$address=Account::find(decrypt($id));
 
-    // $request->validate([
-    //     'fname'=> ['required', 'string', 'max:499'],
-    //     'lname'=> ['required', 'string', 'max:499'],
-    //     'email'=> ['required', 'string', 'max:499'],
-    //     'phone'=> ['required', 'string', 'max:499'],
-    //      'address1' => ['required', 'string', 'max:499'],
-    //        'address2' => ['required', 'string', 'max:499'],
-    //         'city' => ['required', 'string'],
-    //         'state' => ['required', 'string'],
-    //        'pin' => ['required', 'digits:6'],
-    //  ]);
-    $order=new Order();
-    $order->user_id=Auth::id();
-    $total=0;
-    $cartItems_total=Cart::where('userId', Auth::user()->id)->get();
-    foreach($cartItems_total as $prod)
-    {
-        $total+=$prod->products->price;
-
-    }
-    $order->total_price=$total;
-    $order->fname=$request->input('fname');
-    $order->lname=$request->input('lname');
-    $order->address1=$request->input('address1');
-    $order->address2=$request->input('address2');
-    $order->state=$request->input('state');
-    $order->phone=$request->input('phone');
-    $order->city=$request->input('city');
-    $order->pin=$request->input('pin');
-    $order->email=$request->input('email');
-    $order->tracking_no='abc'.rand(1111,9999);
-    $order->save();
-    $order->id;
+    return view('placeorder',compact('cartItems','address'));
+}public function placeorder(Request $request){
+    // Check if the cart is empty
     $cartItems = Cart::where('userId', Auth::user()->id)->get();
-    foreach($cartItems as $cartItem)
-    {
+    if ($cartItems->isEmpty()) {
+        return redirect()->back()->with('message', 'Your cart is empty.');
+    }
+
+    $order = new Order();
+    $order->user_id = Auth::id();
+    $total = 0;
+    $cartItems_total = $cartItems;
+
+    foreach ($cartItems_total as $prod) {
+        $total += $prod->products->price;
+    }
+
+    $order->total_price = $total;
+    $order->fname = $request->input('fname');
+    $order->lname = $request->input('lname');
+    $order->address1 = $request->input('address1');
+    $order->address2 = $request->input('address2');
+    $order->state = $request->input('state');
+    $order->phone = $request->input('phone');
+    $order->city = $request->input('city');
+    $order->pin = $request->input('pin');
+    $order->email = $request->input('email');
+    $order->tracking_no = 'abc' . rand(1111, 9999);
+    $order->save();
+
+    $order->id;
+
+    foreach ($cartItems as $cartItem) {
         OrderItem::create([
-            'order_id'=>$order->id,
-            'prod_id'=>$cartItem->id,
-            'qlty'=>$cartItem->quantity,
-            'price'=>$cartItem->products->price,
+            'order_id' => $order->id,
+            'prod_id' => $cartItem->id,
+            'qlty' => $cartItem->quantity,
+            'price' => $cartItem->products->price,
         ]);
     }
-    if(Auth::user()->address1==NULL)
-    {
-        $user=User::where('id',Auth::user()->id)->first();
-        $user->fname=$request->input('fname');
-        $user->lname=$request->input('lname');
-        $user->address1=$request->input('address1');
-        $user->address2=$request->input('address2');
-        $user->state=$request->input('state');
-        $user->city=$request->input('city');
-        $user->pin=$request->input('pin');
-        $user->email=$request->input('email');
+
+    if (Auth::user()->address1 == NULL) {
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->fname = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->address1 = $request->input('address1');
+        $user->address2 = $request->input('address2');
+        $user->state = $request->input('state');
+        $user->city = $request->input('city');
+        $user->pin = $request->input('pin');
+        $user->email = $request->input('email');
         $user->update();
     }
-    $cartItems = Cart::where('userId', Auth::user()->id)->get();
+
     Cart::destroy($cartItems);
 
-    return redirect()->back()->with('message','Order Placed Successfully');
+    return redirect()->back()->with('message', 'Order Placed Successfully');
+}
+
+
+public function show($id)
+{
+    $product = product::find($id);
+    if (!$product) {
+
+        return abort(404);
+    }
+    return view('productdetails', compact('product'));
 }
 public function orderlist(){
-    return view('orderlist');
+    $orders=Order::where('user_id', Auth::user()->id)->get();
+    return view('orderlist', compact('orders'));
 }
 }
 

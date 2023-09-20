@@ -10,7 +10,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
     <!-- Products List CSS -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    
+
     <!-- Demo CSS (No need to include it into your project) -->
     {{-- <link rel="stylesheet" href="css/d.css"> --}}
   </head>
@@ -46,12 +46,12 @@
     <a href="{{ route('cart') }}">
         <span class="fas fa-shopping-bag"></span>
     </a>
-   
+
                 </ul>
             </div>
             <div class="tag bg-red">sale</div>
             <div class="title pt-4 pb-1">{{ $product->name }}</div>
-            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
+            {{-- <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div> --}}
             <div class="price">${{ $product->price }}</div>
             <form action="{{ url('cart') }}" method="POST">
     @csrf
