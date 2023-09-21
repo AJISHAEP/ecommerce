@@ -57,11 +57,18 @@
                             <i class="fas fa-user-circle me-2"></i> Profile
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href={{ route('welcome') }}>
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+
+
+                    <li>
+                        <a href="{{ route('welcome') }}">
+                            <i class="fas fa-home me-2"></i> Home
                         </a>
-                    </li> --}}
+                    </li>
+                    <li>
+                        <a href={{ route('orderlist') }}>
+                            <i class="fab fa-first-order me-2"></i> Order
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i> Logout
@@ -69,11 +76,6 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </li>
-                    <li>
-                        <a href="{{ route('welcome') }}">
-                            <i class="fas fa-user-circle me-2"></i> Home
-                        </a>
                     </li>
                 </ul>
                 </div>

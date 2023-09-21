@@ -75,12 +75,12 @@
 
                                         <li>
                                             <a href={{ route('welcome') }}>
-                                                <i class="fas fa-user-circle me-2"></i> Home
+                                                <i class="fas fa-home me-2"></i> Home
                                             </a>
                                         </li>
                                         <li>
                                             <a href={{ route('orderlist') }}>
-                                                <i class="fas fa-user-circle me-2"></i> Order
+                                                <i class="fab fa-first-order me-2"></i> Order
                                             </a>
                                         </li>
                                         <li>
@@ -148,12 +148,12 @@
                 <p>
                     Trendy Products, Factory Prices, Excellent Service
                 </p>
-                <button type="button" class="btn btn-outline-light">
+                {{-- {{-- <button type="button" class="btn btn-outline-light">
                     Learn more
-                </button>
-                <button type="button" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
+                </button> --}}
+                <a href="{{route('welcome')}}" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
                     <span class="pt-1">Purchase now</span>
-                </button>
+                </a>
             </div>
         </div>
         <!-- Jumbotron -->
@@ -209,7 +209,7 @@
                                     </li>
 
 
-                                    <li class="icon mx-3"><span class="far fa-heart"></span></li>
+                                    {{-- <li class="icon mx-3"><span class="far fa-heart"></span></li> --}}
                                     {{-- <li class="icon">
     <a href="{{ route('cart',encrypt($product->id)) }}">
         <span class="fas fa-shopping-bag"></span>

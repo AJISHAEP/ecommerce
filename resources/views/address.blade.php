@@ -33,30 +33,66 @@
             <a href="{{route('signup')}}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2 text"></i><p class="d-none d-md-block mb-0 text">Sign up</p> </a>
             <!-- ... -->
             <div class="dropdown">
-                <button class="fas fa-user m-1 me-md-2 text" style="font-size: 1.5rem;"></button>
-                <div class="dropdown-content">
-                    <ul>
-                    <li>
-                        <a href="{{ route('profile') }}">
-                            <i class="fas fa-user-circle me-2"></i> Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                    <li>
-                        <a href="{{ route('welcome') }}">
-                            <i class="fas fa-user-circle me-2"></i> Home
-                        </a>
-                    </li>
-                </ul>
-                </div>
-            </div>
+                @auth
+                                    <style>
+                                        .fas.fa-user {
+                                            border: none;
+                                            /* Remove the border */
+                                            outline: none;
+                                            /* Remove the outline */
+                                        }
+                                    </style>
+                                    <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+
+
+                                @endauth
+
+
+                                <div class="dropdown-content">
+                                    <ul>
+                                        <li>
+                                            <a href={{ route('profile') }}>
+                                                <i class="fas fa-user-circle me-2"></i> Profile
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href={{ route('welcome') }}>
+                                                <i class="fas fa-home me-2"></i> Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={{ route('orderlist') }}>
+                                                <i class="fab fa-first-order me-2"></i> Order
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="fas fa-sign-out-alt"></i> Logout
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @auth
+                                <style>
+                                    .fas.fa-shopping-cart {
+                                        border: none;
+                                        /* Remove the border */
+                                        outline: none;
+                                        /* Remove the outline */
+                                    }
+                                </style>
+                                <a href="{{ route('cartlist') }}">
+                                    <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+                                </a>
+
+                            @endauth
 
 <!-- ... -->
 
@@ -100,7 +136,7 @@
                         <!-- Profile picture help block -->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button -->
-                        <button class="btn btn-primary" type="button">Upload new image</button>
+                        <button class="btn btn-danger" type="button">Upload new image</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +208,7 @@
 
 
                         <div class="card-body">
-                            <form action="{{ route('address.update') }}" method="POST">
+                            <form action="{{ route('address.update') }}" method="POST"  enctype="multipart/form-data">
                                 @csrf
                                 <!-- Form Group (house name, street, city, state, pin) -->
                                 <div class="row gx-3 mb-3">
@@ -216,9 +252,9 @@
                                 </div>
                                 <!-- Save changes button for address details -->
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <button class="btn btn-primary" type="submit">Add </button>
+                                    <button class="btn btn-danger" type="submit">Add </button>
 
-                                    <a href="{{ route('add') }}" class="btn btn-primary">Address List</a>
+                                    <a href="{{ route('add') }}" class="btn btn-danger">Address List</a>
                                 </div>
                             </form>
                         </div>

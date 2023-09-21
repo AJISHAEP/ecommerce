@@ -76,12 +76,12 @@
                                         </li>
                                         <li>
                                             <a href={{ route('welcome') }}>
-                                                <i class="fas fa-user-circle me-2"></i> Home
+                                                <i class="fas fa-home me-2"></i> Home
                                             </a>
                                         </li>
                                         <li>
                                             <a href={{ route('orderlist') }}>
-                                                <i class="fas fa-user-circle me-2"></i> Order
+                                                <i class="fab fa-first-order  me-2"></i> Order
                                             </a>
                                         </li>
                                         <li>

@@ -143,8 +143,28 @@ public function show($id)
     return view('productdetails', compact('product'));
 }
 public function orderlist(){
+    if (Auth::check()) {
+        $user = Auth::user();
     $orders=Order::where('user_id', Auth::user()->id)->get();
     return view('orderlist', compact('orders'));
+    }else{
+        return redirect('signin');
+    }
 }
-}
+public function delete($id){
+    $cartItem = Cart::where('userId', Auth::user()->id)
+                    ->where('id', $id) // Assuming each cart item has a unique ID
+                    ->first();
 
+    if (!$cartItem) {
+        // Handle the case where the cart item with the given ID is not found.
+        return redirect()->route('cartlist')->with('error','Item not found');
+    }
+
+    // You can also delete any associated records like images here if needed.
+
+    $cartItem->delete();
+
+    return redirect()->route('cartlist')->with('message','Item deleted successfully');
+}
+}

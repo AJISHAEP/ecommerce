@@ -33,30 +33,66 @@
             <a href="{{route('signup')}}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2 text"></i><p class="d-none d-md-block mb-0 text">Sign up</p> </a>
             <!-- ... -->
             <div class="dropdown">
-                <button class="fas fa-user m-1 me-md-2 text" style="font-size: 1.5rem;"></button>
-                <div class="dropdown-content">
-                    <ul>
+                @auth
+                <style>
+                    .fas.fa-user {
+                        border: none;
+                        /* Remove the border */
+                        outline: none;
+                        /* Remove the outline */
+                    }
+                </style>
+                <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+
+
+            @endauth
+
+
+            <div class="dropdown-content">
+                <ul>
                     <li>
-                        <a href="{{ route('profile') }}">
+                        <a href={{ route('profile') }}>
                             <i class="fas fa-user-circle me-2"></i> Profile
                         </a>
                     </li>
+
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href={{ route('welcome') }}>
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ route('orderlist') }}>
+                            <i class="fab fa-first-order me-2"></i> Order
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
                             @csrf
                         </form>
                     </li>
-                    <li>
-                        <a href="{{ route('welcome') }}">
-                            <i class="fas fa-user-circle me-2"></i> Home
-                        </a>
-                    </li>
                 </ul>
-                </div>
             </div>
+        </div>
+        @auth
+            <style>
+                .fas.fa-shopping-cart {
+                    border: none;
+                    /* Remove the border */
+                    outline: none;
+                    /* Remove the outline */
+                }
+            </style>
+            <a href="{{ route('cartlist') }}">
+                <button class="fas fa-shopping-cart m-1 me-2 text" style="font-size: 1.5rem;"></button>
+            </a>
+
+        @endauth
 
 <!-- ... -->
 

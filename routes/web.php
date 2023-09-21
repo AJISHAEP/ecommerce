@@ -41,6 +41,7 @@ Route::get('orderlist', [CartController::class, 'orderlist'])->name('orderlist')
 // Route::get('my', [CartController::class, 'index']);
 Route::post('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::get('product/{id}', [CartController::class,'show'])->name('productdetails');
+Route::get('delete/{id}', [CartController::class,'delete'])->name('delete');
 
 // Route::post('/account', [AuthManager::class, 'accountPost'])->name('account.post');
 // Route::get('/addaddress', [AuthManager::class, 'addaddress'])->name('addaddress');

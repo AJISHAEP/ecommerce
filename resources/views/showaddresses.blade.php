@@ -37,37 +37,38 @@
             <div class="dropdown">
 
 
+
                 @auth
-                    <style>
-                        .fas.fa-user {
-                            border: none;
-                            /* Remove the border */
-                            outline: none;
-                            /* Remove the outline */
-                        }
-                    </style>
-                    <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+                <style>
+                    .fas.fa-user {
+                        border: none;
+                        /* Remove the border */
+                        outline: none;
+                        /* Remove the outline */
+                    }
+                </style>
+                <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
 
 
-                @endauth
+            @endauth
 
 
-                <div class="dropdown-content">
-                    <ul>
-                        <li>
-                            <a href={{ route('welcome') }}>
-                                <i class="fas fa-user-circle me-2"></i> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href={{ route('profile') }}>
-                                <i class="fas fa-user-circle me-2"></i> Profile
-                            </a>
-                        </li>
+            <div class="dropdown-content">
+                <ul>
+                    <li>
+                        <a href={{ route('profile') }}>
+                            <i class="fas fa-user-circle me-2"></i> Profile
+                        </a>
+                    </li>
 
                     <li>
+                        <a href={{ route('welcome') }}>
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
                         <a href={{ route('orderlist') }}>
-                            <i class="fas fa-user-circle me-2"></i> Order
+                            <i class="fab fa-first-order me-2"></i> Order
                         </a>
                     </li>
                     <li>

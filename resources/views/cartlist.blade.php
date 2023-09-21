@@ -65,11 +65,23 @@
 
                                 @endauth
 
+
                                 <div class="dropdown-content">
                                     <ul>
                                         <li>
                                             <a href={{ route('profile') }}>
                                                 <i class="fas fa-user-circle me-2"></i> Profile
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href={{ route('welcome') }}>
+                                                <i class="fas fa-home me-2"></i> Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={{ route('orderlist') }}>
+                                                <i class="fab fa-first-order me-2"></i> Order
                                             </a>
                                         </li>
                                         <li>
@@ -82,15 +94,9 @@
                                                 @csrf
                                             </form>
                                         </li>
-                                        <li>
-                                            <a href="{{ route('welcome') }}">
-                                                <i class="fas fa-user-circle me-2"></i> Home
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
-
                             @auth
                                 <style>
                                     .fas.fa-shopping-cart {
@@ -166,8 +172,8 @@
                                 </div>
                                 <div class="cart_item_action cart_info_col">
                                     <div class="cart_item_title">Action</div>
-                                    <button class="btn btn-danger btnnn delete-cart-item"
-                                        data-cart-item-id="{{ $cartItem->id }}">Delete</button>
+                                    <a href="{{route('delete', $cartItem->id )}}" class="btn btn-danger btnnn delete-cart-item"
+                                        data-cart-item-id="cart">Delete</a>
                                 </div>
 
                                 {{-- <i class="fas fa-trash fa-animate-shake" style="color: white; padding-right: 8px;"></i>  </a> --}}

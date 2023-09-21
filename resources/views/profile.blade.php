@@ -33,7 +33,19 @@
             <a href="{{route('signup')}}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2 text"></i><p class="d-none d-md-block mb-0 text">Sign up</p> </a>
             <!-- ... -->
             <div class="dropdown">
-                <button class="fas fa-user m-1 me-md-2 text" style="font-size: 1.5rem;"></button>
+                @auth
+                                    <style>
+                                        .fas.fa-user {
+                                            border: none;
+                                            /* Remove the border */
+                                            outline: none;
+                                            /* Remove the outline */
+                                        }
+                                    </style>
+                                    <button class="fas fa-user m-1 me-2 text" style="font-size: 1.5rem;"></button>
+
+
+                                @endauth
                 <div class="dropdown-content">
                     <ul>
                     <li>
@@ -41,14 +53,14 @@
                             <i class="fas fa-user-circle me-2"></i> Profile
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="#">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    <li>
+                        <a href={{ route('orderlist') }}>
+                            <i class="fab fa-first-order me-2"></i> Order
                         </a>
-                    </li> --}}
+                    </li>
                     <li>
                         <a href={{ route('welcome') }}>
-                            <i class="fas fa-user-circle me-2"></i> Home
+                            <i class="fas fa-home"></i> Home
                         </a>
                     </li>
                     <li>
@@ -121,7 +133,7 @@
                         <!-- Profile picture help block -->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button -->
-                        <button class="btn btn-primary" type="button">Upload new image</button>
+                        <button class="btn btn-danger" type="button">Upload new image</button>
                     </div>
                 </div>
             </div>
@@ -175,9 +187,9 @@
                             <!-- Save changes button for account details -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- Left-aligned Update button -->
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-danger" type="submit">Update</button>
                                 <div>
-                                    <a href="{{ route('address') }}" class="btn btn-primary">Add Address</a>
+                                    <a href="{{ route('address') }}" class="btn btn-danger">Add Address</a>
                                 </div>
                                 <!-- Right-aligned Add Address button -->
 

@@ -40,12 +40,17 @@
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product"> <img src="{{ asset("storage/images/".$product->image) }}" alt="">
                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                    <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                    <li class="icon mx-3"><span class="far fa-heart"></span></li>
+                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+                        <li class="icon">
+                            <a href="{{ route('productdetails', ['id' => $product->id]) }}">
+                                <span class="fas fa-expand-arrows-alt"></span>
+                            </a>
+                        </li>
+                    {{-- <li class="icon mx-3"><span class="far fa-heart"></span></li>
                     <li class="icon">
     <a href="{{ route('cart') }}">
         <span class="fas fa-shopping-bag"></span>
-    </a>
+    </a> --}}
 
                 </ul>
             </div>
